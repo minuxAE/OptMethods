@@ -124,7 +124,7 @@ def SMA(pop, dim, lb, ub, maxIter, fun):
         fitness = Fitness(X, fun)
         fitness, sortIndex = SortFitness(fitness)
         X = SortPosition(X, sortIndex)
-        print(X)
+        # print(X)
         if(fitness[0] <= GbestScore):
             GbestScore = copy.copy(fitness[0])
             GbestPosition = copy.copy(X[0, :])
