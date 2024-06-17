@@ -26,11 +26,6 @@ def initialization(pop, ub, lb, dim):
 
     return X
 
-def fun(x):
-    # 适应度函数: 优化问题的目标函数
-    fitness = np.sum(x**2)
-    return fitness
-
 def BorderCheck(X, ub, lb, pop, dim):
     # 边界检查函数
     # dim 个体维度大小
@@ -65,7 +60,7 @@ def SortPosition(X, index):
     # 根据适应度值得大小对个体位置进行排序
     Xnew = np.zeros(X.shape)
     for i in range(X.shape[0]):
-        X[i, :] = X[index[i], :]
+        Xnew[i, :] = X[index[i], :]
     return Xnew
 
 def SMA(pop, dim, lb, ub, maxIter, fun):
@@ -78,9 +73,11 @@ def SMA(pop, dim, lb, ub, maxIter, fun):
     EPS = 1e-8
     z = 0.03 # 位置更新参数
     X = initialization(pop, ub, lb, dim) # 初始化种群
+   
     fitness = Fitness(X, fun) # 计算适应度值
     fitness, sortIndex = SortFitness(fitness) # 对适应度进行排序
     X = SortPosition(X, sortIndex) # 种群排序
+    
     GbestScore = copy.copy(fitness[0])
     GbestPosition = copy.copy(X[0, :])
     Curve = np.zeros([maxIter, 1])
@@ -127,6 +124,7 @@ def SMA(pop, dim, lb, ub, maxIter, fun):
         fitness = Fitness(X, fun)
         fitness, sortIndex = SortFitness(fitness)
         X = SortPosition(X, sortIndex)
+        print(X)
         if(fitness[0] <= GbestScore):
             GbestScore = copy.copy(fitness[0])
             GbestPosition = copy.copy(X[0, :])
@@ -134,17 +132,12 @@ def SMA(pop, dim, lb, ub, maxIter, fun):
 
     return GbestScore, GbestPosition, Curve
 
-
-
-
-
-
-
-    
-
-
-
 def foo1():
+    def fun(x):
+    # 适应度函数: 优化问题的目标函数
+        fitness = np.sum(x**2)
+        return fitness
+    
     pop = 10
     dim = 5
     ub = np.array([5, 5, 5, 5, 5])
