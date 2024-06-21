@@ -6,9 +6,6 @@ import numpy as np
 def fun(X):
     return X[0]**2 + X[1]**2
 
-
-from mpl_toolkits.mplot3d import Axes3D
-
 def vis():
     fig, ax = plt.subplots(subplot_kw={'projection': '3d'})
     
