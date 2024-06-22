@@ -39,7 +39,7 @@ def main():
     plt.xlabel('Iteration', fontsize='medium')
     plt.ylabel('Fitness', fontsize='medium')
     plt.grid()
-    plt.title('SMA', fontsize='large')
+    plt.title('ABC', fontsize='large')
     plt.show()
 
 
